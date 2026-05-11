@@ -3,7 +3,7 @@ Base provider abstract class for AI services.
 
 This module defines the abstract interface that all AI providers must implement.
 """
-
+import os
 from abc import ABC, abstractmethod
 from datetime import timedelta
 from typing import Dict, Any, Optional, Union
@@ -179,6 +179,9 @@ class BaseAIProvider(ABC):
         if clean_content.endswith("```"):
             clean_content = clean_content[:-3]
 
+        if "```" in clean_content:
+            clean_content = clean_content.split("```")[0]
+
         return clean_content.strip()
 
     def _create_headers(self, additional_headers: Optional[Dict[str, str]] = None) -> Dict[str, str]:
@@ -197,6 +200,9 @@ class BaseAIProvider(ABC):
 
         if additional_headers:
             headers.update(additional_headers)
+
+        if headers.get("x-api-key", "").strip().startswith("Bearer"):
+            headers["Authorization"] = f"Bearer {headers.pop('x-api-key', os.getenv('ANTHROPIC_API_KEY'))}"
 
         return headers
 
