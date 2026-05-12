@@ -202,7 +202,7 @@ class BaseAIProvider(ABC):
             headers.update(additional_headers)
 
         if headers.get("x-api-key", "").strip().startswith("Bearer"):
-            headers["Authorization"] = f"Bearer {headers.pop('x-api-key', os.getenv('ANTHROPIC_API_KEY'))}"
+            headers["Authorization"] = headers.pop('x-api-key', os.getenv('ANTHROPIC_API_KEY'))
 
         return headers
 
