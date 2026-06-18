@@ -1,3 +1,9 @@
+[tool.poetry]
+name = "autoheal"
+version = "0.1.0"
+description = ""
+authors = []
+
 [tool.poetry.dependencies]
 python = "^3.10"
 
@@ -18,11 +24,11 @@ pyyaml = "^6.0.3"
 # Caching
 cachetools = "^5.5.0"
 redis = { version = "^5.1.0", optional = true }
-diskcache = "^5.6.4"
+diskcache = "^5.6.3"
 filelock = "^3.16.0"
 
 # Resilience
-tenacity = "^9.3.0"
+tenacity = "^9.1.4"
 
 # Metrics and monitoring
 prometheus-client = "^0.21.0"
@@ -61,3 +67,7 @@ mkdocs-material = "^9.7.0"
 responses = "^0.26.0"
 faker = "^26.0.0"
 testcontainers = { version = "^4.7.0", extras = ["selenium"] }
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
