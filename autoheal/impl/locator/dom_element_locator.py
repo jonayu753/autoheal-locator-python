@@ -94,7 +94,7 @@ class DOMElementLocator(ElementLocator):
             html = await request.adapter.get_page_source()
 
             # Truncate large HTML to avoid exceeding AI token limits
-            MAX_HTML_SIZE = 50_000
+            MAX_HTML_SIZE = 200_000
             if len(html) > MAX_HTML_SIZE:
                 logger.warning(
                     "HTML truncated from %d to %d chars for AI analysis",
